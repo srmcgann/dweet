@@ -192,24 +192,20 @@
         history.replaceState({},'',location.origin+location.pathname+'?code='+encodeURIComponent(e.value))
       }
       
-      const copy = () => {
+      
+      copy = () => {
         var range = document.createRange()
-        var temp = document.createElement('div')
-        temp.style.display = 'none'
-        console.log(temp.innerHTML = location.href)
-        document.body.appendChild(temp)
-        range.selectNode(temp)
+        range.selectNode(document.querySelectorAll('.resultLink')[0])
         window.getSelection().removeAllRanges()
         window.getSelection().addRange(range)
         document.execCommand("copy")
         window.getSelection().removeAllRanges()
-        temp.remove()
-        var el = document.querySelector('#copyConfirmation')
+        let el = document.querySelector('#copyConfirmation')
         el.style.display = 'block';
         el.style.opacity = 1
         reduceOpacity = () => {
           if(+el.style.opacity > 0){
-            el.style.opacity -= .06
+            el.style.opacity -= .02 * (launched ? 4 : 1)
             if(+el.style.opacity<.1){
               el.style.opacity = 1
               el.style.display = 'none'
@@ -221,6 +217,40 @@
           }
         }
         setTimeout(()=>{reduceOpacity()}, 250)
+      }
+      
+      
+      const copy = () => {
+        var temp = document.createElement('div')
+        temp.style.display = 'none'
+        temp.innerHTML = location.href
+        document.body.appendChild(temp)
+        setTimeout(()=>{
+          var range = document.createRange()
+          range.selectNode(temp)
+          window.getSelection().removeAllRanges()
+          window.getSelection().addRange(range)
+          document.execCommand("copy")
+          window.getSelection().removeAllRanges()
+          temp.remove()
+          var el = document.querySelector('#copyConfirmation')
+          el.style.display = 'block';
+          el.style.opacity = 1
+          reduceOpacity = () => {
+            if(+el.style.opacity > 0){
+              el.style.opacity -= .06
+              if(+el.style.opacity<.1){
+                el.style.opacity = 1
+                el.style.display = 'none'
+              }else{
+                setTimeout(()=>{
+                  reduceOpacity()
+                }, 10)
+              }
+            }
+          }
+          setTimeout(()=>{reduceOpacity()}, 250)
+        },0)
       }      
 
       const R = (r,g,b) => `rgba(${r},${g},${b},1)`
@@ -240,4 +270,3 @@
     </script>
   </body>
 </html>
-
