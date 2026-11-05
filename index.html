@@ -194,16 +194,17 @@
       
       const copy = () => {
         var range = document.createRange()
-        var el = document.createElement('div')
-        el.style.display = 'none'
-        el.innerHTML = location.href
-        el.id="tempDiv"
-        document.body.appendChild(el)
+        var temp = document.createElement('div')
+        temp.style.display = 'none'
+        console.log(temp.innerHTML = location.href)
+        temp.id="tempDiv"
+        document.body.appendChild(temp)
         range.selectNode(document.querySelector('#tempDiv'))
         window.getSelection().removeAllRanges()
         window.getSelection().addRange(range)
         document.execCommand("copy")
         window.getSelection().removeAllRanges()
+        temp.remove()
         el = document.querySelector('#copyConfirmation')
         el.style.display = 'block';
         el.style.opacity = 1
