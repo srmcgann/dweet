@@ -223,7 +223,7 @@
         setTimeout(()=>{reduceOpacity()}, 250)
       }      
 
-      const R = (r,g,b) => `rgba(${r},${g},${b},1)`
+      window.R = (r,g,b) => `rgba(${r},${g},${b},1)`
       
       Draw = () => {
         window.UserFunc(t)
