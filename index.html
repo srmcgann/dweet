@@ -142,7 +142,7 @@
       <canvas id="c"></canvas>
     </div>
     <script id="codeScript">
-      window.UserFunc = () => { }
+      window.UserFunc = t => { }
     </script>
     <script>
       
@@ -182,7 +182,7 @@
         var newScript = document.createElement('script')
         newScript.id = 'codeScript'
         newScript.innerHTML = `
-          window.UserFunc = () => {
+          window.UserFunc = t => {
             ${e.value}
           }`
         document.body.appendChild(newScript)
@@ -191,35 +191,7 @@
         c.height = 1080
         history.replaceState({},'',location.origin+location.pathname+'?code='+encodeURIComponent(e.value))
       }
-      
-      
-      /*copy = () => {
-        var range = document.createRange()
-        range.selectNode(document.querySelectorAll('.resultLink')[0])
-        window.getSelection().removeAllRanges()
-        window.getSelection().addRange(range)
-        document.execCommand("copy")
-        window.getSelection().removeAllRanges()
-        let el = document.querySelector('#copyConfirmation')
-        el.style.display = 'block';
-        el.style.opacity = 1
-        reduceOpacity = () => {
-          if(+el.style.opacity > 0){
-            el.style.opacity -= .02 * (launched ? 4 : 1)
-            if(+el.style.opacity<.1){
-              el.style.opacity = 1
-              el.style.display = 'none'
-            }else{
-              setTimeout(()=>{
-                reduceOpacity()
-              }, 10)
-            }
-          }
-        }
-        setTimeout(()=>{reduceOpacity()}, 250)
-      }*/
-      
-      
+
       const copy = () => {
         var temp = document.createElement('div')
         temp.style.position = 'absolute'
@@ -254,7 +226,7 @@
       const R = (r,g,b) => `rgba(${r},${g},${b},1)`
       
       Draw = () => {
-        window.UserFunc()
+        window.UserFunc(t)
         t+=1/60
         requestAnimationFrame(Draw)
       }
