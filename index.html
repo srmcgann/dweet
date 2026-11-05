@@ -197,20 +197,19 @@
         var temp = document.createElement('div')
         temp.style.display = 'none'
         console.log(temp.innerHTML = location.href)
-        temp.id="tempDiv"
         document.body.appendChild(temp)
-        range.selectNode(document.querySelector('#tempDiv'))
+        range.selectNode(temp)
         window.getSelection().removeAllRanges()
         window.getSelection().addRange(range)
         document.execCommand("copy")
         window.getSelection().removeAllRanges()
         temp.remove()
-        el = document.querySelector('#copyConfirmation')
+        var el = document.querySelector('#copyConfirmation')
         el.style.display = 'block';
         el.style.opacity = 1
         reduceOpacity = () => {
           if(+el.style.opacity > 0){
-            el.style.opacity -= .08
+            el.style.opacity -= .06
             if(+el.style.opacity<.1){
               el.style.opacity = 1
               el.style.display = 'none'
