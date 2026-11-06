@@ -226,6 +226,7 @@
       window.R = (r=0,g=0,b=0,a=1) => `rgba(${r},${g},${b},${a})`
       
       Draw = () => {
+        if(c.width!=1920)c.height=c.width/(16/9);
         window.UserFunc(t)
         t+=1/60
         requestAnimationFrame(Draw)
