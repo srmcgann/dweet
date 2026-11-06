@@ -24,23 +24,11 @@
       }
       .main{
         overflow: hidden;
-      }
-      .textInput{
+        width: 1000px;
         display: inline-block;
-        border-radius: 10px;
-        width: calc(100vw - 100px);
-        margin-left: 50px;
-        vertical-align: top;
-        min-height: 100px;
-        height: calc(50vh - 300px);
-        background: #333;
-        color: #aa2;
-        border: none;
-        padding: 10px;
-        margin-top: 0px;
-      }
-      .textInput:focus{
-        outline: none;
+        position:relative;
+        transform: translateX(-50%);
+        left: 50%;
       }
       #c{
         border: 3px solid #234;
@@ -53,15 +41,14 @@
         background-color: #fff;
       }
       #linkButton{
-        border: none;
         border-radius: 10px;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
+        position: absolute;
+        left: calc(100% - 535px);
+        top: 240px;
         width: 80px;
         padding: 5px;
         line-height: 1em;
-        background-color: #208;
+        background-color: #432;
         color: #fff;
         font-family: Play;
         font-size: 40px;
@@ -115,6 +102,27 @@
         padding: 10px;
         display: inline-block;
       }
+      #shim{
+        width: 400px;
+        margin: 10px;
+        border-radius: 50px;
+      }
+      .textInput{
+        resize: none;
+        display: inline-block;
+        border-radius: 10px;
+        width: calc(100% - 465px);
+        height: 280px;
+        background: #333;
+        color: #aa2;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+        overflow: auto;
+      }
+      .textInput:focus{
+        outline: none;
+      }
       #resultDiv{
         position: absolute;
         margin-top: 50px;
@@ -131,6 +139,7 @@
     <div class="main">
       <button
         id="linkButton"
+        title="copy link to this dweet"
         onclick="copy()"
       >🔗</button>
       <textarea
@@ -141,8 +150,9 @@
       >c.width=1920 // clear the canvas
 for(i=0;i<9;i++)
 x.fillRect(400+i*100+S(t)*300,400,50,200) // draw 50x200 rects</textarea>
-      <canvas id="c"></canvas>
+      <img src="https://srmcgann.github.io/tempp/shim.png" id="shim" /><br>
     </div>
+    <canvas id="c"></canvas>
     <script id="codeScript">
       window.UserFunc = t => { }
     </script>
@@ -172,7 +182,7 @@ x.fillRect(400+i*100+S(t)*300,400,50,200) // draw 50x200 rects</textarea>
           c.style.width = `${(n=b.clientWidth/1) - margin*2}px`
           c.style.height = `${n*d - margin*2}px`
         }else{
-          c.style.height = `${(n=b.clientHeight/2) - margin*2}px`
+          c.style.height = `${(n=b.clientHeight/1.75) - margin*2}px`
           c.style.width = `${n/d - margin*2}px`
         }
       }
